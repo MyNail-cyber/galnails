@@ -1,0 +1,314 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+  color: #513948;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+.c-header {
+  align-items: center;
+  background-color: rgba(81, 57, 72, 0.6); /* カスタマイズしてください */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 100px; /* カスタマイズしてください */
+  width: 100%;
+  position: fixed; /* 追記 */
+}
+.c-header__logo {
+  color: #FFFFFF; /* カスタマイズしてください */
+  text-decoration: none;
+  font-size: 30px; /* 追記 */
+  font-family: "Kaushan Script"; /* 追記 */
+}
+.c-header__list {
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.c-header__list-item {
+  list-style: none;
+  text-decoration: none;
+}
+.c-header__list-link {
+  color: #FFFFFF; /* カスタマイズしてください */
+  display: block;
+  margin-left: 50px; /* カスタマイズしてください */
+  text-decoration: none;
+  padding: 8px 0px 0px; /* カスタマイズしてください */
+  text-align: center; /* 追記 */
+  font-size: 20px; /* 追記 */
+  font-weight: 300; /* 追記 */
+}
+.c-header__list-link span {
+  font-size: 12px; /* 追記 */
+}
+.c-header__list-link:hover {
+  filter: opacity(0.6); /* カスタマイズしてください */
+}
+/* hamburger */
+.c-hamburger-menu {
+  position: relative;
+  position: fixed; /* 追記 */
+}
+@media screen and (max-width: 1100px) {
+  .c-header__logo { /* 追記 */
+    font-size: 20px;
+  }
+  .c-header { /* 追記 */
+    padding: 1rem 25px; /* カスタマイズしてください */
+  }
+  .c-header__list-link { /* 追記 */
+    margin-left: 0px;
+    padding: 0px 0px 30px;
+    text-align: left;
+  }
+  .c-hamburger-menu__list {
+    background-color: rgba(81, 57, 72, 0.9); /* カスタマイズしてください */
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding: 25px; /* カスタマイズしてください */
+    position: absolute;
+    transform: translateX(-100%);
+    transition: 0.3s; /* カスタマイズしてください */
+    top: 100%;
+    width: 100%;
+  }
+  #hamburger:checked ~ .c-hamburger-menu__list {
+    transform: translateX(0%);
+    transition: 0.3s;
+  }
+}
+.c-hamburger-menu__input {
+  display: none;
+}
+.c-hamburger-menu__bg {
+  background-color: #000; /* カスタマイズしてください */
+  cursor: pointer;
+  display: none;
+  height: 100vh;
+  left: 0;
+  opacity: 0.4; /* カスタマイズしてください */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+#hamburger:checked ~ .c-hamburger-menu__bg {
+  display: block;
+}
+.c-hamburger-menu__button {
+  display: none;
+}
+@media screen and (max-width: 1100px) {
+  .c-hamburger-menu__button {
+    align-items: center;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* カスタマイズしてください */
+    height: 32px; /* カスタマイズしてください */
+    justify-content: center;
+    width: 32px; /* カスタマイズしてください */
+  }
+}
+.c-hamburger-menu__button-mark {
+  background-color: #FFFFFF; /* カスタマイズしてください */
+  display: block;
+  height: 1px; /* カスタマイズしてください */
+  transition: 0.3s; /* カスタマイズしてください */
+  width: 20px; /* カスタマイズしてください */
+}
+@media screen and (max-width: 1100px) {
+  #hamburger:checked ~ .c-hamburger-menu__button .c-hamburger-menu__button-mark:nth-of-type(1) {
+    transform: translate(2px, 1px) rotate(45deg); /* カスタマイズしてください */
+    transform-origin: 0%; /* カスタマイズしてください */
+  }
+  #hamburger:checked ~ .c-hamburger-menu__button .c-hamburger-menu__button-mark:nth-of-type(2) {
+    opacity: 0;
+  }
+  #hamburger:checked ~ .c-hamburger-menu__button .c-hamburger-menu__button-mark:nth-of-type(3) {
+    transform: translate(2px, 3px) rotate(-45deg); /* カスタマイズしてください */
+    transform-origin: 0%; /* カスタマイズしてください */
+  }
+}
+/* pagetop 矢印 */
+/*スクロールリンクの形状*/
+.scroll-top {
+  /*表示位置*/
+  position: fixed;
+  right: 3px;
+  bottom: 10px;
+  z-index: 2;
+  /*はじめは非表示*/
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s, visibility .5s; /*それぞれに0.5秒の変化のアニメーション*/
+  /*縦書き*/
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  /*改行禁止*/
+  white-space: nowrap;
+  /*矢印の動き*/
+  animation: arrowmove 1s ease-in-out infinite;
+}
+@keyframes arrowmove {
+  0% {
+    bottom: 20px;
+  }
+  50% {
+    bottom: 25px;
+  }
+  100% {
+    bottom: 20px;
+  }
+}
+/*.scroll-viewクラスがついたら出現*/
+.scroll-top.scroll-view {
+  opacity: 1;
+  visibility: visible;
+}
+/*リンク全体の aタグの形状*/
+.scroll-top a {
+  text-decoration: none;
+  color: #9e6f8c;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  display: block;
+}
+/*スクロールリンクの形状*/
+.js-scroll a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 50px;
+  background: #9e6f8c;
+}
+.js-scroll a::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  right: -6px;
+  width: 1px;
+  height: 20px;
+  background: #9e6f8c;
+  transform: skewX(-31deg);
+}
+/*Edge IE11 hack*/
+_:-ms-lang(x), .js-scroll a::before {
+  right: -11px;
+}
+/*ページトップリンクの形状*/
+.js-pagetop a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 50px;
+  background: #9e6f8c;
+}
+.js-pagetop a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -6px;
+  width: 1px;
+  height: 20px;
+  background: #9e6f8c;
+  transform: skewX(31deg);
+}
+/*Edge IE11 hack*/
+_:-ms-lang(x), .js-pagetop a::before {
+  right: 0;
+}
+/*検証のためのCSS*/
+section {
+  padding: 500px 0;
+}
+/*　footer　*/
+.footer-title {
+  font-size: 30px;
+  padding: 50px 0 25px 100px;
+  color: #ffffff;
+  font-family: "Kaushan Script";
+}
+.footer-menu {
+  width: 100%;
+  background-color: #513948;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-menu__title {
+  text-decoration-line: none;
+}
+.footer ul {
+  margin: 0;
+}
+.footer ul li {
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+  padding: 50px 0 0 50px;
+  line-height: 20px;
+}
+.footer ul li:last-child {
+  padding: 0 100px 0 50px;
+}
+.footer ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  text-decoration-line: none;
+}
+.footer ul li a:hover {
+  filter: opacity(0.6);
+}
+.footer span {
+  font-size: 12px;
+}
+.footer-small {
+  background-color: #513948;
+  text-align: center;
+  padding: 80px 0 15px;
+}
+.footer small {
+  font-size: 14px;
+  color: #FFFFFF;
+}
+@media(max-width:1130px) {
+  .footer-title {
+    font-size: 24px;
+    padding: 50px 0 60px 0;
+    text-align: center;
+  }
+  .footer-menu {
+    display: block;
+  }
+  .footer ul {
+    padding: 0;
+    text-align: center;
+  }
+  .footer ul li {
+    font-size: 18px;
+    padding: 0;
+    margin: 0 60px 30px;
+    line-height: 20px;
+  }
+  .footer ul li:last-child {
+    padding: 0 0px 0 0px;
+  }
+  .footer-small {
+    padding: 20px 0 15px;
+  }
+}
